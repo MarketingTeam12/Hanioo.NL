@@ -1,0 +1,172 @@
+.how-it-works {
+  padding: 110px 6%;
+  background: var(--bg);
+}
+
+.hiw-content {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  margin-top: 20px;
+}
+
+.hiw-illustration {
+  width: 42%;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.hiw-illustration svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hiw-badge {
+  position: absolute;
+  bottom: 6px;
+  left: -10px;
+  background: var(--card);
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 190px;
+  border: 1px solid var(--border);
+}
+
+.hiw-badge strong {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  color: var(--ink);
+}
+
+.hiw-badge span {
+  font-size: 12.5px;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.hiw-steps {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.hiw-steps::before {
+  content: '';
+  position: absolute;
+  left: 27px;
+  top: 30px;
+  bottom: 30px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--cyan), var(--border) 90%);
+  opacity: 0.5;
+}
+
+.hiw-step {
+  display: flex;
+  gap: 24px;
+  padding: 22px 0;
+  position: relative;
+}
+
+.hiw-step-marker {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--bg-tint);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.hiw-step:hover .hiw-step-marker {
+  border-color: var(--cyan);
+  box-shadow: 0 10px 24px rgba(47, 128, 237, 0.16);
+  transform: translateY(-2px);
+}
+
+.hiw-step-icon {
+  font-size: 22px;
+  color: var(--cyan);
+}
+
+.hiw-step-number {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+
+.hiw-step-text h3 {
+  font-size: 18px;
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.hiw-step-text p {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .how-it-works {
+    padding: 80px 6%;
+  }
+
+  .hiw-content {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .hiw-illustration {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .hiw-badge {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+  }
+
+  .hiw-steps {
+    width: 100%;
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hiw-step {
+    gap: 16px;
+  }
+
+  .hiw-step-marker {
+    width: 48px;
+    height: 48px;
+  }
+
+  .hiw-step-icon {
+    font-size: 19px;
+  }
+}

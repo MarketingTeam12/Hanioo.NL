@@ -1,0 +1,108 @@
+:root {
+  --navy: #0b1f3f;
+  --navy-light: #17416e;
+  --navy-deep: #060f22;
+  --cyan: #3d8bd4;
+  --violet: #7ec3ee;
+  --gold: #d6b25e;
+  --ink: #0b1220;
+  --text: #5b6472;
+  --text-soft: #8791a1;
+  --bg: #ffffff;
+  --bg-tint: #f5f8ff;
+  --card: #ffffff;
+  --border: #e6ebf5;
+  --shadow-sm: 0 6px 18px rgba(7, 26, 47, 0.08);
+  --shadow-md: 0 20px 45px rgba(7, 26, 47, 0.14);
+  --radius: 18px;
+  --container: 1240px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --font-heading: 'Sora', system-ui, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', system-ui, 'Segoe UI', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+input, textarea, button {
+  font-size: 16px;
+}
+
+/* Shared section wrapper so content never over-stretches on large screens */
+.section-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+/* Keep section headings clear of the sticky navbar when jumping via anchor links */
+section[id] {
+  scroll-margin-top: 84px;
+}
+
+@media (max-width: 1080px) {
+  section[id] {
+    scroll-margin-top: 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Consistent, visible keyboard-focus ring across the whole site */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--cyan);
+  color: #fff;
+}

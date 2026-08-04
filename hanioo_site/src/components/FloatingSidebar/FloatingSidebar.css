@@ -1,0 +1,376 @@
+/* ═══════════════════════════════════════════════════
+   Floating Bottom-Right Buttons
+   WhatsApp · Phone · AI Chat
+═══════════════════════════════════════════════════ */
+
+/* ── Stack container ── */
+.fb-stack {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+/* ── Each circular button ── */
+.fb-btn {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.22s ease;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fb-btn:hover,
+.fb-btn:focus-visible {
+  transform: scale(1.13);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.32);
+}
+
+.fb-btn--active {
+  transform: scale(1.13);
+  box-shadow: 0 8px 28px rgba(142, 68, 173, 0.45);
+}
+
+/* ── Icon ── */
+.fb-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Tooltip (appears to the left on hover) ── */
+.fb-tooltip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: rgba(20, 20, 20, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  padding: 5px 11px;
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+/* Arrow on right side of tooltip */
+.fb-tooltip::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-left-color: rgba(20, 20, 20, 0.82);
+}
+
+.fb-btn:hover .fb-tooltip,
+.fb-btn:focus-visible .fb-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ── Scroll Up / Down Toggle Button ── */
+.fb-btn--scroll {
+  background: #111111;
+  width: 48px;
+  height: 48px;
+}
+
+.fb-btn--scroll .fb-icon {
+  font-size: 1.2rem;
+}
+
+.fb-btn--scroll:hover,
+.fb-btn--scroll:focus-visible {
+  background: #000000;
+}
+
+/* ── WhatsApp pulse ring ── */
+.fb-btn--pulse::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  animation: fb-pulse 2.4s ease-out infinite;
+}
+
+@keyframes fb-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(37, 211, 102, 0.6); }
+  65%  { box-shadow: 0 0 0 13px rgba(37, 211, 102, 0);  }
+  100% { box-shadow: 0 0 0 0   rgba(37, 211, 102, 0);   }
+}
+
+/* ═══════════════════════════════════════════════════
+   AI Chat Panel
+═══════════════════════════════════════════════════ */
+.fb-chat-panel {
+  position: fixed;
+  bottom: 100px;
+  right: 90px;
+  z-index: 9998;
+  width: 330px;
+  max-height: 490px;
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: 0 16px 56px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  animation: fb-panel-in 0.28s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+@keyframes fb-panel-in {
+  from {
+    opacity: 0;
+    transform: scale(0.88) translateY(20px);
+    transform-origin: bottom right;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transform-origin: bottom right;
+  }
+}
+
+/* ── Chat header ── */
+.fb-chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #8e44ad, #5b2c6f);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.fb-chat-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.fb-chat-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fb-chat-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.fb-chat-status {
+  font-size: 0.72rem;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.fb-chat-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #b9f5c7;
+  animation: fb-blink 2s ease-in-out infinite;
+}
+
+@keyframes fb-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.fb-chat-close {
+  margin-left: auto;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.15s;
+}
+.fb-chat-close:hover { background: rgba(255, 255, 255, 0.28); }
+
+/* ── Messages area ── */
+.fb-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  background: var(--bg);
+  scrollbar-width: thin;
+  scrollbar-color: #d0cfe8 transparent;
+}
+
+/* ── Bubbles ── */
+.fb-bubble {
+  max-width: 83%;
+  padding: 9px 13px;
+  border-radius: 16px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  word-break: break-word;
+  animation: fb-bubble-in 0.2s ease;
+}
+
+@keyframes fb-bubble-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fb-bubble--bot {
+  background: var(--bg-tint);
+  color: var(--ink);
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+}
+
+.fb-bubble--user {
+  background: linear-gradient(135deg, #8e44ad, #5b2c6f);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+  align-self: flex-end;
+}
+
+/* ── Typing dots ── */
+.fb-typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 14px;
+}
+
+.fb-typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #bbb;
+  animation: fb-dot 1.2s infinite ease-in-out;
+}
+.fb-typing span:nth-child(2) { animation-delay: 0.18s; }
+.fb-typing span:nth-child(3) { animation-delay: 0.36s; }
+
+@keyframes fb-dot {
+  0%, 80%, 100% { transform: scale(0.7); opacity: 0.45; }
+  40%            { transform: scale(1);   opacity: 1;    }
+}
+
+/* ── Input footer ── */
+.fb-chat-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+  background: var(--card);
+  flex-shrink: 0;
+}
+
+.fb-chat-input {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  border-radius: 22px;
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  outline: none;
+  background: var(--bg-tint);
+  color: var(--ink);
+  transition: border-color 0.18s, background 0.18s;
+}
+.fb-chat-input:focus {
+  border-color: #8e44ad;
+  background: var(--bg);
+}
+
+.fb-chat-send {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #8e44ad, #5b2c6f);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.fb-chat-send:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 14px rgba(142, 68, 173, 0.45);
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .fb-stack {
+    bottom: 18px;
+    right: 14px;
+    gap: 10px;
+  }
+
+  .fb-btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .fb-btn--scroll {
+    width: 44px;
+    height: 44px;
+  }
+
+  .fb-icon {
+    font-size: 1.3rem;
+  }
+
+  .fb-chat-panel {
+    right: 10px;
+    bottom: 90px;
+    width: calc(100vw - 20px);
+    max-width: 340px;
+  }
+}

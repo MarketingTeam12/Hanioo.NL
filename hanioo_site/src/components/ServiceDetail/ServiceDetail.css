@@ -1,0 +1,474 @@
+.service-detail {
+  padding-top: 84px; /* clears fixed navbar */
+}
+
+.service-detail .section-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.service-detail .title {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.service-detail .eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: rgba(47, 128, 237, 0.1);
+  padding: 5px 14px;
+  border-radius: 30px;
+  margin-bottom: 14px;
+}
+
+.service-detail .title h2 {
+  font-size: clamp(24px, 3.6vw, 34px);
+  color: var(--ink);
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.sd-hero {
+  padding: 48px 24px 80px;
+  background: linear-gradient(180deg, var(--bg-tint) 0%, var(--bg) 100%);
+}
+
+.sd-hero-inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.sd-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  margin-bottom: 26px;
+  transition: color 0.22s ease, gap 0.22s ease;
+}
+
+.sd-back:hover {
+  color: var(--cyan);
+  gap: 12px;
+}
+
+.sd-icon-badge {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.sd-hero-copy .eyebrow {
+  color: var(--cyan);
+}
+
+.sd-hero-copy h1 {
+  font-size: clamp(30px, 4.6vw, 46px);
+  color: var(--ink);
+  margin: 6px 0 18px;
+  line-height: 1.15;
+}
+
+.sd-lead {
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 560px;
+}
+
+.sd-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.sd-cta-row .cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: linear-gradient(120deg, var(--cyan), var(--violet));
+  color: #fff;
+  border: none;
+  padding: 13px 26px;
+  border-radius: 30px;
+  font-size: 14.5px;
+  font-weight: 700;
+  box-shadow: 0 10px 26px rgba(47, 128, 237, 0.28);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.sd-cta-row .cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(47, 128, 237, 0.34);
+}
+
+.sd-secondary-btn {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 13px 22px;
+  border-radius: 30px;
+  border: 1.5px solid var(--border);
+  transition: border-color 0.22s ease, color 0.22s ease, background 0.22s ease;
+}
+
+.sd-secondary-btn:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(47, 128, 237, 0.06);
+}
+
+/* Hero photo */
+.service-hero-photo {
+  position: relative;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(10, 25, 48, 0.16);
+  aspect-ratio: 520 / 440;
+}
+
+.service-hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shp-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.shp-badge {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 10px 24px rgba(10, 25, 48, 0.25);
+  backdrop-filter: blur(2px);
+}
+
+.shp-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  background: #0b1f3f;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 9px 20px;
+  border-radius: 17px;
+  white-space: nowrap;
+}
+
+/* ── Photo banner ─────────────────────────────────────────── */
+.sd-photo-banner {
+  padding: 0 24px 64px;
+}
+
+.sd-photo-banner-frame {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  max-height: 420px;
+}
+
+.sd-photo-banner-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+}
+
+/* ── Body ─────────────────────────────────────────────────── */
+.sd-body {
+  padding: 12px 24px 64px;
+}
+
+.sd-body-inner p {
+  max-width: 820px;
+  margin: 0 auto;
+  font-size: 16.5px;
+  line-height: 1.85;
+  color: var(--text);
+  text-align: center;
+}
+
+/* ── Feature grid ─────────────────────────────────────────── */
+.sd-features {
+  padding: 64px 24px;
+  background: var(--bg-tint);
+}
+
+.sd-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.sd-feature-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.sd-feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+}
+
+.sd-feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.sd-feature-card h3 {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.sd-feature-card p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+/* ── Use cases ────────────────────────────────────────────── */
+.sd-usecases {
+  padding: 72px 24px;
+}
+
+.sd-usecases-inner {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.sd-usecases-inner h2 {
+  font-size: clamp(24px, 3.4vw, 32px);
+  color: var(--ink);
+  margin: 10px 0 14px;
+  line-height: 1.2;
+}
+
+.sd-usecases-sub {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 380px;
+}
+
+.sd-usecases-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sd-usecases-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  font-size: 15px;
+  color: var(--ink);
+  font-weight: 600;
+  transition: box-shadow 0.24s ease, transform 0.24s ease;
+}
+
+.sd-usecases-list li:hover {
+  box-shadow: var(--shadow-sm);
+  transform: translateX(4px);
+}
+
+.sd-usecases-list li svg {
+  flex-shrink: 0;
+  font-size: 18px;
+  margin-top: 2px;
+}
+
+/* ── CTA banner ───────────────────────────────────────────── */
+.sd-cta-banner {
+  padding: 20px 24px 80px;
+}
+
+.sd-cta-banner-inner {
+  background: linear-gradient(120deg, var(--navy), var(--navy-light));
+  border-radius: 28px;
+  padding: 56px 40px;
+  text-align: center;
+  color: #fff;
+}
+
+.sd-cta-banner-inner h2 {
+  font-size: clamp(22px, 3.2vw, 30px);
+  margin-bottom: 12px;
+}
+
+.sd-cta-banner-inner p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 15.5px;
+  margin-bottom: 26px;
+}
+
+.sd-cta-banner-inner .cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: linear-gradient(120deg, var(--cyan), var(--violet));
+  color: #fff;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-size: 14.5px;
+  font-weight: 700;
+  box-shadow: 0 12px 30px rgba(47, 128, 237, 0.3);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.sd-cta-banner-inner .cta-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Related services ─────────────────────────────────────── */
+.sd-related {
+  padding: 20px 24px 96px;
+}
+
+.sd-related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.sd-related-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 30px 26px;
+  text-decoration: none;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  height: 100%;
+}
+
+.sd-related-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+}
+
+.sd-related-thumb {
+  position: relative;
+  width: calc(100% + 52px);
+  margin: -30px -26px 4px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.sd-related-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sd-related-card .icon {
+  position: absolute;
+  bottom: -22px;
+  left: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 8px 18px rgba(10, 25, 48, 0.18);
+  border: 3px solid var(--card);
+}
+
+.sd-related-card h3 {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 22px;
+}
+
+.sd-related-card p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text);
+  flex: 1;
+}
+
+.sd-related-card .card-link {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--cyan);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .sd-hero-inner,
+  .sd-usecases-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .sd-usecases-sub {
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .sd-hero { padding: 36px 20px 56px; }
+  .sd-body { padding: 8px 20px 48px; }
+  .sd-features { padding: 48px 20px; }
+  .sd-usecases { padding: 48px 20px; }
+  .sd-related { padding: 12px 20px 64px; }
+  .sd-cta-banner { padding: 12px 20px 56px; }
+  .sd-cta-banner-inner { padding: 40px 24px; }
+}
