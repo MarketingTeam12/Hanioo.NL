@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+
+import { useEffect, useRef, useState, useId } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import {
   FaBars,
   FaTimes,
-  FaGooglePlay,
   FaApple,
   FaPhoneAlt,
   FaClock,
@@ -21,6 +21,66 @@ import { GBFlag, NLFlag } from "./Flags";
 const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.honey.hanioo";
 const APP_STORE_URL = "https://www.apple.com/app-store/";
+
+// Colorful Google Play triangle (matches the official badge look).
+// NOTE: this component can be rendered more than once on the same page
+// (desktop nav + mobile menu are both in the DOM at the same time, just
+// hidden/shown via CSS). SVG <linearGradient> ids must be unique across
+// the WHOLE document, or the browser can't tell which gradient belongs
+// to which <path>, and one of the icons ends up invisible. We use
+// React's useId() to generate a unique suffix per rendered instance.
+function GooglePlayIcon({ className }) {
+  const uid = useId();
+  const blueId = `gp-blue-${uid}`;
+  const yellowId = `gp-yellow-${uid}`;
+  const greenId = `gp-green-${uid}`;
+  const redId = `gp-red-${uid}`;
+
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 512 512"
+      width="22"
+      height="22"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id={blueId} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#2C8CFF" />
+          <stop offset="100%" stopColor="#5CE1FF" />
+        </linearGradient>
+        <linearGradient id={yellowId} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#FFD400" />
+          <stop offset="100%" stopColor="#FF9900" />
+        </linearGradient>
+        <linearGradient id={greenId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#00E676" />
+          <stop offset="100%" stopColor="#00A651" />
+        </linearGradient>
+        <linearGradient id={redId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FF5252" />
+          <stop offset="100%" stopColor="#D50000" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M47 31c-6 4-10 11-10 20v410c0 9 4 16 10 20l232-225L47 31z"
+        fill={`url(#${blueId})`}
+      />
+      <path
+        d="M279 256L47 31c1-1 2-2 4-3 7-4 16-4 24 1l280 159-76 68z"
+        fill={`url(#${greenId})`}
+      />
+      <path
+        d="M279 256l76 68-280 159c-8 5-17 5-24 1-2-1-3-2-4-3l232-225z"
+        fill={`url(#${redId})`}
+      />
+      <path
+        d="M355 324l-76-68 76-68 79 45c14 8 14 29 0 37l-79 54-0-0z"
+        fill={`url(#${yellowId})`}
+      />
+    </svg>
+  );
+}
 
 const LANGUAGE_OPTIONS = [
   { code: "en", label: "English", Flag: GBFlag },
@@ -191,13 +251,21 @@ function Navbar() {
                 className="store-btn"
                 onClick={() => handleStoreClick("Google Play", PLAY_STORE_URL)}
               >
-                <FaGooglePlay /> {t("navbar.playStore")}
+                <GooglePlayIcon className="store-btn-icon" />
+                <span className="store-btn-text">
+                  <em>GET IT ON</em>
+                  <strong>Google Play</strong>
+                </span>
               </button>
               <button
                 className="store-btn"
                 onClick={() => handleStoreClick("App Store", APP_STORE_URL)}
               >
-                <FaApple /> {t("navbar.appStore")}
+                <FaApple className="store-btn-icon" />
+                <span className="store-btn-text">
+                  <em>Download on the</em>
+                  <strong>App Store</strong>
+                </span>
               </button>
             </li>
           </ul>
@@ -208,13 +276,21 @@ function Navbar() {
               className="store-btn"
               onClick={() => handleStoreClick("Google Play", PLAY_STORE_URL)}
             >
-              <FaGooglePlay /> {t("navbar.playStore")}
+              <GooglePlayIcon className="store-btn-icon" />
+              <span className="store-btn-text">
+                <em>GET IT ON</em>
+                <strong>Google Play</strong>
+              </span>
             </button>
             <button
               className="store-btn"
               onClick={() => handleStoreClick("App Store", APP_STORE_URL)}
             >
-              <FaApple /> {t("navbar.appStore")}
+              <FaApple className="store-btn-icon" />
+              <span className="store-btn-text">
+                <em>Download on the</em>
+                <strong>App Store</strong>
+              </span>
             </button>
           </div>
 
