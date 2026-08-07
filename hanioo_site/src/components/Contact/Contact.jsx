@@ -3,33 +3,48 @@ import "./Contact.css";
 import { motion } from "framer-motion";
 import { FaGlobe, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { useLanguage } from "../../i18n/LanguageContext";
-
-const ACCESS_KEY = "8850e143-5e61-447b-b94d-8938ee616fae";
+import { submitToZohoCrm } from "../../utils/zohoCrm";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function Contact() {
   const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+  const [recaptchaToken, setRecaptchaToken] = useState("");
+  const [recaptchaError, setRecaptchaError] = useState(false);
   const { t } = useLanguage();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!recaptchaToken) {
+      setRecaptchaError(true);
+      return;
+    }
+    setRecaptchaError(false);
+
     setStatus("sending");
 
-    const data = Object.fromEntries(new FormData(e.target));
+    const raw = Object.fromEntries(new FormData(e.target));
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(data),
+      const res = await submitToZohoCrm({
+        name: raw.name || "",
+        email: raw.email || "",
+        phone: raw.subject_line || raw.phone || "",
+        city: raw.city || "Netherlands",
+        message: raw.message || "",
+        subject: "New Contact Form Submission — Hanioo",
+        recaptchaToken: recaptchaToken,
       });
-      const json = await res.json();
-      if (json.success) {
+
+      if (res.success !== false) {
         setStatus("sent");
         e.target.reset();
+        setRecaptchaToken("");
       } else {
         setStatus("error");
       }
-    } catch {
+    } catch (err) {
+      console.error(err);
       setStatus("error");
     }
   };
@@ -97,17 +112,33 @@ function Contact() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            {/* Web3Forms access key */}
-            <input type="hidden" name="access_key" value={ACCESS_KEY} />
-            {/* Optional: customise the email subject */}
-            <input type="hidden" name="subject" value="New Contact Form Submission — Hanioo" />
-            {/* Honeypot anti-spam */}
-            <input type="checkbox" name="botcheck" style={{ display: "none" }} />
+            {/* Zoho CRM Required Hidden Fields */}
+            <input type="hidden" name="xnQsjsdp" value="b8b65411a1b1420942e1e01f2ee2930f1d636ed6d6511254b933103b1f8971bf" />
+            <input type="hidden" name="zc_gad" id="zc_gad" value="" />
+            <input type="hidden" name="xmIwtLD" value="4591badcb28859d64ec20ccf1a28080bd58517368fd0629a30ed9ec798a17f8242d07687955bab85cbfd4cd2c3f617c5" />
+            <input type="hidden" name="actionType" value="TGVhZHM=" />
+            <input type="hidden" name="returnURL" value="https://honeytranslations.com/thank-you" />
+            <input type="hidden" name="Lead Source" value="Website" />
+            <input type="hidden" name="LEADCF39" value="." />
+            <input type="hidden" name="LEADCF29" value="." />
+            <input type="hidden" name="aG9uZXlwb3Q" value="" />
 
-            <input type="text"  name="name"    placeholder={t("contact.formName")}    required />
-            <input type="email" name="email"   placeholder={t("contact.formEmail")}   required />
-            <input type="text"  name="subject_line" placeholder={t("contact.formPhone")} />
-            <textarea           name="message" rows="6" placeholder={t("contact.formMessage")} required />
+            <input type="text" name="name" placeholder={t("contact.formName")} required />
+            <input type="email" name="email" placeholder={t("contact.formEmail")} required />
+            <input type="text" name="subject_line" placeholder={t("contact.formPhone")} />
+            <textarea name="message" rows="6" placeholder={t("contact.formMessage")} required />
+
+            <div style={{ marginBottom: "15px" }}>
+              <ReCAPTCHA
+                sitekey="6Lfo0nktAAAAAM1A-d0ghI3GnnS1U0O94NqqK9xZ"
+                onChange={(token) => setRecaptchaToken(token)}
+              />
+              {recaptchaError && (
+                <span style={{ color: "red", fontSize: "12px" }}>
+                  Please verify that you are not a robot.
+                </span>
+              )}
+            </div>
 
             <button
               type="submit"
@@ -116,8 +147,8 @@ function Contact() {
               {status === "sending"
                 ? t("contact.sending")
                 : status === "sent"
-                ? t("contact.sent")
-                : t("contact.send")}
+                  ? t("contact.sent")
+                  : t("contact.send")}
             </button>
 
             {status === "sent" && (

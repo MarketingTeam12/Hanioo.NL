@@ -41,13 +41,13 @@ function Services() {
               >
                 <div className="card-image">
                   <img src={item.image} alt={title} loading="lazy" />
-                  <span
-                    className="card-image-icon"
-                    style={{ background: item.color }}
-                  >
-                    {item.icon}
-                  </span>
                 </div>
+                <span
+                  className="card-image-icon"
+                  style={{ background: item.color }}
+                >
+                  {item.icon}
+                </span>
 
                 <h3>{title}</h3>
                 <p>{desc}</p>

@@ -343,6 +343,7 @@
 .sd-cta-banner-inner h2 {
   font-size: clamp(22px, 3.2vw, 30px);
   margin-bottom: 12px;
+  color: #fff;
 }
 
 .sd-cta-banner-inner p {

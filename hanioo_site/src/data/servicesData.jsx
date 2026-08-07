@@ -90,6 +90,16 @@ export const services = [
         title: "100+ Languages Available",
         text: "Train in any of Hanioo's supported languages — from widely spoken global languages to regional and specialised dialects.",
       },
+      {
+        icon: <FaCalendarCheck />,
+        title: "Flexible Scheduling",
+        text: "Book sessions at times that suit you, across multiple time zones, fitting seamlessly into your busy lifestyle.",
+      },
+      {
+        icon: <FaBook />,
+        title: "Interactive Materials",
+        text: "Access a library of rich, engaging resources and exercises designed to reinforce your learning between live sessions.",
+      },
     ],
     useCases: [
       "Professionals preparing for international assignments or global roles",
@@ -145,6 +155,16 @@ export const services = [
         icon: <FaClipboardList />,
         title: "Transparent Quoting",
         text: "Upfront quotes with word count, domain, and delivery timeline — no hidden fees, no surprises on delivery.",
+      },
+      {
+        icon: <FaClock />,
+        title: "Fast Turnaround",
+        text: "Expedited delivery options available for urgent projects without compromising on quality or accuracy.",
+      },
+      {
+        icon: <FaLock />,
+        title: "Secure & Confidential",
+        text: "Enterprise-grade encryption and strict NDAs guarantee your sensitive documents remain completely private.",
       },
     ],
     useCases: [

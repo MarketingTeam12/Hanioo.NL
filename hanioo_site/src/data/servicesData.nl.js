@@ -20,6 +20,8 @@ export const servicesNL = {
       { title: "1-op-1 & groepssessies", text: "Individuele verdiepingssessies of gestructureerde kleine groepen voor teams en zakelijke taalprogramma's." },
       { title: "Voortgang bijhouden", text: "Voortgangsrapporten op basis van mijlpalen en wekelijkse doelen zichtbaar in de app, zodat leerlingen en managers op één lijn blijven." },
       { title: "100+ talen beschikbaar", text: "Train in elke door Hanioo ondersteunde taal — van veelgesproken wereldtalen tot regionale en gespecialiseerde dialecten." },
+      { title: "Flexibele planning", text: "Boek sessies op tijden die u uitkomen, in verschillende tijdzones, zodat ze naadloos aansluiten bij uw drukke levensstijl." },
+      { title: "Interactief lesmateriaal", text: "Krijg toegang tot een bibliotheek met rijk, boeiend materiaal en oefeningen die ontworpen zijn om uw leerproces tussen live sessies door te versterken." },
     ],
     useCases: [
       "Professionals die zich voorbereiden op internationale opdrachten of functies",
@@ -46,6 +48,8 @@ export const servicesNL = {
       { title: "Alle documenttypen", text: "Juridische contracten, medische dossiers, technische handleidingen, websites, certificaten, marketingteksten en meer." },
       { title: "Gecertificeerde vertalingen", text: "Officieel gecertificeerde vertalingen met zegel en verklaring van juistheid — geaccepteerd voor visum-, juridische en academische aanvragen." },
       { title: "Transparante offertes", text: "Vooraf duidelijke offertes met woordaantal, vakgebied en levertijd — geen verborgen kosten, geen verrassingen bij levering." },
+      { title: "Snelle levertijd", text: "Versnelde leveringsopties beschikbaar voor urgente projecten zonder concessies te doen aan kwaliteit of nauwkeurigheid." },
+      { title: "Veilig & Vertrouwelijk", text: "Versleuteling op bedrijfsniveau en strikte geheimhoudingsverklaringen garanderen dat uw gevoelige documenten volledig privé blijven." },
     ],
     useCases: [
       "Juridische contracten, overeenkomsten en rechtbankdocumenten",
