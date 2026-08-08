@@ -3,8 +3,8 @@ import "./WelcomePopup.css";
 import { FaTimes, FaPaperPlane } from "react-icons/fa";
 import haniooDutchLogo from "../../assets/images/hanioo-dutch-logo-dark.png";
 import { useLanguage } from "../../i18n/LanguageContext";
-import { submitToZohoCrm } from "../../utils/zohoCrm";
-import ReCAPTCHA from "react-google-recaptcha";
+
+const ACCESS_KEY = "8850e143-5e61-447b-b94d-8938ee616fae";
 
 function WelcomePopup() {
   const [visible, setVisible] = useState(false);
@@ -13,8 +13,6 @@ function WelcomePopup() {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState(false);
-  const [recaptchaToken, setRecaptchaToken] = useState("");
-  const [recaptchaError, setRecaptchaError] = useState(false);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -60,27 +58,29 @@ function WelcomePopup() {
       setErrors(validationErrors);
       return;
     }
-    
-    if (!recaptchaToken) {
-      setRecaptchaError(true);
-      return;
-    }
-    setRecaptchaError(false);
 
     setLoading(true);
     setSubmitError(false);
 
     try {
-      const res = await submitToZohoCrm({
-        name: form.name,
-        email: form.email,
-        message: form.message,
-        subject: "New Popup Enquiry — Hanioo",
-        recaptchaToken: recaptchaToken,
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: ACCESS_KEY,
+          subject: "New Popup Enquiry — Hanioo",
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          botcheck: "",
+        }),
       });
-      if (res.success !== false) {
+      const json = await res.json();
+      if (json.success) {
         setSubmitted(true);
-        setRecaptchaToken("");
       } else {
         setSubmitError(true);
       }
@@ -124,16 +124,19 @@ function WelcomePopup() {
             </div>
 
             <form onSubmit={handleSubmit} noValidate>
-              {/* Zoho CRM Required Hidden Fields */}
-              <input type="hidden" name="xnQsjsdp" value="b8b65411a1b1420942e1e01f2ee2930f1d636ed6d6511254b933103b1f8971bf" />
-              <input type="hidden" name="zc_gad" id="zc_gad" value="" />
-              <input type="hidden" name="xmIwtLD" value="4591badcb28859d64ec20ccf1a28080bd58517368fd0629a30ed9ec798a17f8242d07687955bab85cbfd4cd2c3f617c5" />
-              <input type="hidden" name="actionType" value="TGVhZHM=" />
-              <input type="hidden" name="returnURL" value="https://honeytranslations.com/thank-you" />
-              <input type="hidden" name="Lead Source" value="Website" />
-              <input type="hidden" name="LEADCF39" value="." />
-              <input type="hidden" name="LEADCF29" value="." />
-              <input type="hidden" name="aG9uZXlwb3Q" value="" />
+              {/* Web3Forms hidden fields */}
+              <input type="hidden" name="access_key" value={ACCESS_KEY} />
+              <input
+                type="hidden"
+                name="subject"
+                value="New Popup Enquiry — Hanioo"
+              />
+              {/* Honeypot anti-spam */}
+              <input
+                type="checkbox"
+                name="botcheck"
+                style={{ display: "none" }}
+              />
 
               <div className="wp-field">
                 <label htmlFor="wp-name">{t("welcomePopup.fullName")}</label>
@@ -190,18 +193,6 @@ function WelcomePopup() {
                   {t("welcomePopup.errorMsg")}
                 </p>
               )}
-
-              <div style={{ marginBottom: "15px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <ReCAPTCHA
-                  sitekey="6Lfo0nktAAAAAM1A-d0ghI3GnnS1U0O94NqqK9xZ"
-                  onChange={(token) => setRecaptchaToken(token)}
-                />
-                {recaptchaError && (
-                  <span style={{ color: "red", fontSize: "12px", marginTop: "5px" }}>
-                    Please verify that you are not a robot.
-                  </span>
-                )}
-              </div>
 
               <button type="submit" className="wp-btn" disabled={loading}>
                 {loading ? (
