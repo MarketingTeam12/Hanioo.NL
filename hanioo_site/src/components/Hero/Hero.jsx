@@ -52,10 +52,7 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
           >
-            {t("hero.titleLine1")}
-            <br />
-            {t("hero.titleLine2")}
-            <br />
+            {t("hero.titleLine1")} {t("hero.titleLine2")}{" "}
             <span className="hero-h1-accent">{t("hero.titleAccent")}</span>
           </motion.h1>
 

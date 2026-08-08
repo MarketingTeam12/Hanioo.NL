@@ -196,17 +196,25 @@ export default function FloatingButtons() {
         {buttons.map((btn) => (
           <button
             key={btn.id}
-            className={`fb-btn${btn.pulse ? " fb-btn--pulse" : ""}${
-              btn.id === "chat" && chatOpen ? " fb-btn--active" : ""
-            }`}
-            style={{ background: btn.bg }}
+            className={`fb-btn ${btn.id === "whatsapp" ? "whatsapp-btn " : ""}${
+              btn.pulse ? "fb-btn--pulse " : ""
+            }${btn.id === "chat" && chatOpen ? "fb-btn--active" : ""}`}
+            style={btn.id === "whatsapp" ? {} : { background: btn.bg }}
             onClick={btn.action}
             aria-label={btn.label}
           >
             {/* Tooltip on the left */}
             <span className="fb-tooltip">{btn.label}</span>
+            {btn.id === "whatsapp" && (
+              <span className="whatsapp-bubble-tail" aria-hidden="true"></span>
+            )}
             {/* Icon */}
             <span className="fb-icon">{btn.icon}</span>
+            {btn.id === "whatsapp" && (
+              <span className="whatsapp-247-badge" aria-hidden="true">
+                24/7
+              </span>
+            )}
           </button>
         ))}
 
